@@ -7,8 +7,10 @@ interface IhandleSetState {
 }
 
 function AdditionNumbers({ handleSetState }: IhandleSetState) {
-  const numberOne = UseFormField();
-  const numberTwo = UseFormField();
+  const [clear, setclear] = React.useState(false);
+
+  const numberOne = UseFormField(clear, setclear);
+  const numberTwo = UseFormField(clear, setclear);
 
   const [error, seterror] = React.useState({ description: "" });
 
@@ -17,6 +19,7 @@ function AdditionNumbers({ handleSetState }: IhandleSetState) {
 
     if (isValidValue(numberOne.value) && isValidValue(numberTwo.value)) {
       handleSetState(+numberOne.value + +numberTwo.value);
+      setclear(true);
       seterror({ description: "" });
     } else {
       seterror({ description: "вводите только цифры" });
