@@ -1,6 +1,5 @@
 import React from "react";
-import { isValidValue } from "../helpers/isValidValue";
-import { UseFormField } from "../hooks/useFormField";
+import useAdditionNumbers from "../hooks/useAdditionNumbers";
 
 interface IhandleSetState {
   handleSetState: any;
@@ -8,24 +7,10 @@ interface IhandleSetState {
 }
 
 function AdditionNumbers({ handleSetState, setIsOpen }: IhandleSetState) {
-  const [clear, setclear] = React.useState(false);
-  const [error, seterror] = React.useState({ description: "" });
-
-  const numberOne = UseFormField(clear, setclear);
-  const numberTwo = UseFormField(clear, setclear);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (isValidValue(numberOne.value) && isValidValue(numberTwo.value)) {
-      handleSetState(+numberOne.value + +numberTwo.value);
-      setclear(true);
-      setIsOpen(true);
-      seterror({ description: "" });
-    } else {
-      seterror({ description: "вводите только цифры" });
-    }
-  };
+  const [handleSubmit, error, numberOne, numberTwo] = useAdditionNumbers({
+    handleSetState,
+    setIsOpen,
+  });
 
   return (
     <div className="addition-numbers">
