@@ -4,15 +4,15 @@ import { UseFormField } from "../hooks/useFormField";
 
 interface IhandleSetState {
   handleSetState: any;
+  setIsOpen: any;
 }
 
-function AdditionNumbers({ handleSetState }: IhandleSetState) {
+function AdditionNumbers({ handleSetState, setIsOpen }: IhandleSetState) {
   const [clear, setclear] = React.useState(false);
+  const [error, seterror] = React.useState({ description: "" });
 
   const numberOne = UseFormField(clear, setclear);
   const numberTwo = UseFormField(clear, setclear);
-
-  const [error, seterror] = React.useState({ description: "" });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,6 +20,7 @@ function AdditionNumbers({ handleSetState }: IhandleSetState) {
     if (isValidValue(numberOne.value) && isValidValue(numberTwo.value)) {
       handleSetState(+numberOne.value + +numberTwo.value);
       setclear(true);
+      setIsOpen(true);
       seterror({ description: "" });
     } else {
       seterror({ description: "вводите только цифры" });
