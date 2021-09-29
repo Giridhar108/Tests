@@ -17,7 +17,7 @@ function Popup({ numbers, isOpen, setIsOpen }: Ipopup) {
   );
 
   return (
-    <div className={isOpen ? "popup" : "popup hidden"}>
+    <div className={isOpen ? "popup" : "popup hidden"} data-testid='popup'>
       {numbers.map((el, i) => {
         if (i === 0) {
           return (

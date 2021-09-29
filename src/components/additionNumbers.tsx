@@ -16,10 +16,22 @@ function AdditionNumbers({ handleSetState, setIsOpen }: IhandleSetState) {
     <div className="addition-numbers">
       <form onSubmit={handleSubmit}>
         <div className="addition-numbers__inputs">
-          <input className="addition-numbers__nuumber" {...numberOne} />
-          <input className="addition-numbers__nuumber" {...numberTwo} />
+          <input
+            className="addition-numbers__nuumber"
+            data-testid="inputOne"
+            {...numberOne}
+          />
+          <input
+            className="addition-numbers__nuumber"
+            data-testid="inputTwo"
+            {...numberTwo}
+          />
         </div>
-        <button className="addition-numbers__btn" type="submit">
+        <button
+          className="addition-numbers__btn"
+          type="submit"
+          data-testid="btn"
+        >
           Выполнить
         </button>
         {error.description && (
